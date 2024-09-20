@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('token', access_token);
     } catch (error) {
       console.error('Error logging in:', error.response?.data?.message || error.message);
-      throw error; // Propagate error for the component to handle
+      throw error; 
     }
   };
 

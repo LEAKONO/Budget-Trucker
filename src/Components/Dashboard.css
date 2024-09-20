@@ -1,34 +1,12 @@
-/* src/Components/Dashboard.css */
-.dashboard {
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .dashboard h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .dashboard p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .dashboard ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .dashboard li {
-    margin: 1rem 0;
-  }
-  
-  .dashboard a {
-    text-decoration: none;
-    color: #007bff;
-  }
-  
-  .dashboard a:hover {
-    text-decoration: underline;
-  }
-  
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-content {
+  margin-left: 250px; 
+  padding: 20px;
+  flex-grow: 1;
+  min-height: calc(100vh - 60px); 
+  background-color: #fff; 
+}

@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import logoo from '../Style/money.jpeg'; // Ensure you have a logo image in the src folder
-
+import logoo from '../Style/money.jpeg'; 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');

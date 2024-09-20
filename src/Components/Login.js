@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../Style/money.jpeg'; // Make sure to replace with the correct path
+import logo from '../Style/money.jpeg'; 
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -105,8 +105,8 @@ const Form = styled.form`
 const Logo = styled.img`
   display: block;
   margin: 0 auto 20px;
-  width: 150px;  // Adjust this value to the desired width
-  height: auto;  // This maintains the aspect ratio
+  width: 150px;  
+  height: auto;  
 `;
 
 const Input = styled.input`
