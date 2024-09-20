@@ -19,7 +19,21 @@ This repository contains the frontend of the Financial Management Application. B
   
 - **Monthly Summary:**
   - Users can input a year and month to view their total income and expenses.
+  - **Income and Expense Tracking:**
+  - Users can add, edit, and delete income and expense entries.
+  - Categories for income and expenses for better organization (e.g., salary, groceries, entertainment).
+
+- **Financial Goals:**
+  - Users can set and track financial goals, such as saving a specific amount or reducing expenses.
+  - Progress indicators show how close users are to achieving their goals.
+
+- **Budget Planning:**
+  - Users can create budgets based on their income and expenses, helping them manage their finances effectively.
   
+
+- **Transaction History:**
+  - A detailed history of all transactions, allowing users to review past financial activities.
+  - Filters for date range, category, and amount for easier navigation.
 - **Responsive Design:**
   - The application is designed to be mobile-friendly and works across different screen sizes.
 
