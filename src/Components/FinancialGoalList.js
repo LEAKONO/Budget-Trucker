@@ -46,7 +46,7 @@ const FinancialGoalsList = () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get('http://127.0.0.1:5000/routes/financial_goals', config);
+        const response = await axios.get('https://budget-trucker-b.onrender.com/routes/financial_goals', config);
         setFinancialGoals(response.data);
         setLoading(false);
       } catch (err) {

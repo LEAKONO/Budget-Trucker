@@ -12,7 +12,7 @@ const AddExpense = ({ onAdd }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:5000/routes/expense', 
+      await axios.post('https://budget-trucker-b.onrender.com/routes/expense', 
         { amount, category, date, description }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );

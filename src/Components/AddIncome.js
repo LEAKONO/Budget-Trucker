@@ -14,7 +14,7 @@ const AddIncome = ({ onAdd }) => {
     e.preventDefault();
     setError(null); 
     try {
-      await axios.post('http://127.0.0.1:5000/routes/income', 
+      await axios.post('https://budget-trucker-b.onrender.com/routes/income', 
         { amount, source, date, description },
         {
           headers: { 

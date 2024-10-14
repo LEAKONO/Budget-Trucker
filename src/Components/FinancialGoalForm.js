@@ -70,7 +70,7 @@ const FinancialGoalForm = () => {
           },
         };
         const response = await axios.post(
-          'http://127.0.0.1:5000/routes/financial_goals',
+          'https://budget-trucker-b.onrender.com/routes/financial_goals',
           values,
           config
         );

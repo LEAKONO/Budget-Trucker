@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useAuth } from '../Contexts/AuthContext'; 
+import { useAuth } from '../Contexts/AuthContext';
 
 const styles = {
   container: {
@@ -37,7 +37,7 @@ const BudgetList = () => {
   const [budgets, setBudgets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { token } = useAuth(); 
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchBudgets = async () => {
@@ -45,27 +45,25 @@ const BudgetList = () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get('http://127.0.0.1:5000/routes/budget', config);
+        const response = await axios.get('https://budget-trucker-b.onrender.com/routes/budget', config);
+
         setBudgets(response.data);
       } catch (err) {
-        console.error("Error fetching budgets:", err);
         setError(err.response ? err.response.data : 'An error occurred');
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
     if (token) {
-      fetchBudgets(); 
+      fetchBudgets();
     } else {
-      console.error("No token found, unable to fetch budgets.");
       setError('No token provided.');
       setLoading(false);
     }
   }, [token]);
 
   if (loading) return <p style={styles.message}>Loading budgets...</p>;
-  if (error) return <p style={styles.message}>Error: {error}</p>;
 
   return (
     <div style={styles.container}>
@@ -77,10 +75,10 @@ const BudgetList = () => {
         <ul style={styles.list}>
           {budgets.map((budget) => (
             <li key={budget.id} style={styles.listItem}>
-              <p>Category: {budget.category}</p>
-              <p>Limit: ${budget.limit}</p>
-              <p>Year: {budget.year}</p>
-              <p>Month: {budget.month}</p>
+              <p><strong>Category:</strong> {budget.category}</p>
+              <p><strong>Limit:</strong> ${budget.limit}</p>
+              <p><strong>Year:</strong> {budget.year}</p>
+              <p><strong>Month:</strong> {budget.month}</p>
             </li>
           ))}
         </ul>

@@ -15,7 +15,7 @@ const styles = {
   mainHeading: {
     margin: '20px 0',
     fontSize: '28px',
-    color: '#333',  // Main heading color
+    color: '#333',  
   },
   incomeHeading: {
     margin: '20px 0',
@@ -62,7 +62,7 @@ const RecentTransactions = () => {
         };
 
         
-        const response = await axios.get('http://127.0.0.1:5000/routes/recent_transactions', config);
+        const response = await axios.get('https://budget-trucker-b.onrender.com/routes/recent_transactions', config);
         console.log('API response:', response.data);
         
         setRecentTransactions(response.data);

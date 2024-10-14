@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../Style/money.jpeg'; 
+import logo from '../Style/money.jpeg';
+import { gsap } from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin'; 
+
+gsap.registerPlugin(TextPlugin);
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -10,6 +14,19 @@ const Login = () => {
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
+  
+  const cardRef = useRef(null);
+  const titleRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [userName, setUserName] = useState(''); 
+  const [welcomeMessage, setWelcomeMessage] = useState(''); 
+
+  useEffect(() => {
+    const timeline = gsap.timeline();
+    timeline.fromTo(cardRef.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.5, ease: "power4.out" });
+    timeline.fromTo(titleRef.current, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1.5, ease: "power4.out", delay: 0.5 });
+    timeline.fromTo(buttonRef.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)", delay: 0.5 });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,124 +34,90 @@ const Login = () => {
 
     try {
       await login(username, password);
+      setUserName(username); 
+      setWelcomeMessage(`Hello again, ${username}! Let’s get you logged in and back on track with your finances.`);
       navigate('/dashboard');
     } catch (error) {
-      setError('Login failed. Please check your credentials and try again.');
+      setError('Login failed. Check your credentials and try again.');
     }
   };
 
   return (
     <Container>
-      <LeftPanel>
-        <h1>Drive Your Budget Forward with Confidence</h1>
-      </LeftPanel>
-      <RightPanel>
+      <Card ref={cardRef}>
+        <h1 ref={titleRef}>Login</h1>
+        {welcomeMessage && <WelcomeMessage>{welcomeMessage}</WelcomeMessage>} 
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Form onSubmit={handleSubmit}>
           <Logo src={logo} alt="Budget Trucker Logo" />
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          <label htmlFor="username">Username</label>
-          <Input 
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-            required
-          />
-          <label htmlFor="password">Password</label>
-          <Input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
-          />
-          <Button type="submit">Login</Button>
-          <SignUp>
-            <span>Don't have an account yet? </span>
-            <a href="/signup">Sign Up</a>
-          </SignUp>
+          <Input type="text" placeholder="Username" required onChange={(e) => setUsername(e.target.value)} />
+          <Input type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
+          <Button ref={buttonRef} type="submit">Login</Button>
         </Form>
-      </RightPanel>
+        <SignUp>
+          <span>Don’t have an account? </span>
+          <a href="/signup">Sign Up</a>
+        </SignUp>
+      </Card>
     </Container>
   );
 };
 
 export default Login;
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   height: 100vh;
-`;
-
-const LeftPanel = styled.div`
-  flex: 1;
-  background-color: #f0f8f0;
-  display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f0f0f0; 
+`;
+
+const Card = styled.div`
+  background: #fff;
+  padding: 30px; 
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
+  border-radius: 10px; 
+  width: 400px;
   text-align: center;
-  padding: 20px;
-
-  h1 {
-    font-size: 2em;
-    color: #333;
-    margin: 0;
-  }
-`;
-
-const RightPanel = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
 `;
 
 const Form = styled.form`
   width: 100%;
-  max-width: 400px;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  margin: 20px 0;
 `;
 
 const Logo = styled.img`
   display: block;
   margin: 0 auto 20px;
-  width: 150px;  
-  height: auto;  
+  width: 120px; 
 `;
 
 const Input = styled.input`
   width: 100%;
-  padding: 10px;
+  padding: 12px; 
   margin: 10px 0;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 5px; 
+  font-size: 16px; 
 `;
 
 const Button = styled.button`
-  background: #4CAF50;
+  background: #007bff;
   color: #fff;
-  padding: 10px;
+  padding: 12px; 
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   width: 100%;
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 18px; 
 
   &:hover {
-    background: #45a049;
+    background: #0056b3;
   }
 `;
 
 const SignUp = styled.div`
-  text-align: center;
   margin-top: 20px;
 
   a {
@@ -150,5 +133,9 @@ const SignUp = styled.div`
 const ErrorMessage = styled.div`
   color: red;
   margin-bottom: 10px;
-  text-align: center;
+`;
+
+const WelcomeMessage = styled.div`
+  color: green; 
+  margin-bottom: 10px;
 `;

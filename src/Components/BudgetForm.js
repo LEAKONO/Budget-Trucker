@@ -15,7 +15,7 @@ const AddBudget = () => {
     const budgetData = { category, limit: parseFloat(limit), year: parseInt(year), month: parseInt(month) };
 
     try {
-      const response = await axios.post('/budget', budgetData, {
+      const response = await axios.post('https://budget-trucker-b.onrender.com/routes/budget', budgetData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

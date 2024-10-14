@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 import styled from 'styled-components';
 
 const HomeContainer = styled.div`
@@ -42,14 +43,38 @@ const Quote = styled.p`
         0 0 10px #00ff00;
 `;
 
+const ButtonContainer = styled.div`
+    margin-top: 30px; 
+`;
+
+const Button = styled(Link)`
+    background-color: #ff9900; 
+    color: white;
+    padding: 15px 30px; 
+    border: none;
+    border-radius: 5px; 
+    font-size: 1.2em; 
+    text-decoration: none; 
+    margin: 10px; 
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #cc7a00; 
+    }
+`;
+
 const Home = () => {
     return (
         <HomeContainer>
             <NeonText>Your Financial Journey Starts Here!</NeonText>
             <NeonSubtext>Effortlessly manage your finances!</NeonSubtext>
             <Quote>
-                "It's not about how much money you make, but how much you keep. A budget is telling your money where to go instead of wondering where it went. Do not save what is left after spending, but spend what is left after saving. Financial freedom is available to those who learn about it and work for it."
+            "Financial freedom comes from managing what you earn. Prioritize saving and budgeting to ensure your money works for you."
             </Quote>
+            <ButtonContainer>
+                <Button to="add-expense">Ready to Add Expense?</Button>
+                <Button to="add-income">Ready to Add Income?</Button>
+            </ButtonContainer>
         </HomeContainer>
     );
 };

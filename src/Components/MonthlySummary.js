@@ -46,16 +46,16 @@ const MonthlySummary = () => {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { token } = useAuth(); // Get token from AuthContext
+  const { token } = useAuth(); 
 
   const fetchSummary = useCallback(async () => {
     setLoading(true);
-    setError(null); // Reset error before fetching
+    setError(null); 
     try {
       const config = {
         headers: { Authorization: `Bearer ${token}` }, 
       };
-      const response = await axios.get(`http://127.0.0.1:5000/routes/monthly_summary?year=${year}&month=${month}`, config);
+      const response = await axios.get(`https://budget-trucker-b.onrender.com/routes/monthly_summary?year=${year}&month=${month}`, config);
       setSummary(response.data);
     } catch (err) {
       setError(err.response ? err.response.data.message : 'An error occurred');

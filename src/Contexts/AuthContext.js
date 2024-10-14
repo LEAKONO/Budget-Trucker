@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/auth/login', { username, password });
+      const response = await axios.post('https://budget-trucker-b.onrender.com/auth/login', { username, password });
       const { access_token } = response.data;
       setToken(access_token);
       localStorage.setItem('token', access_token);

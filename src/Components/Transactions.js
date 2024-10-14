@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useAuth } from '../Contexts/AuthContext';  // Importing useAuth from your AuthContext
+import { useAuth } from '../Contexts/AuthContext';  
 
 const Transactions = () => {
-  const { token } = useAuth(); // Get the token from your AuthContext
+  const { token } = useAuth();
   const [transactions, setTransactions] = useState({ incomes: [], expenses: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,11 +11,11 @@ const Transactions = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/routes/transactions', {
+        const response = await fetch('https://budget-trucker-b.onrender.com/routes/transactions', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,  // Use token from AuthContext
+            'Authorization': `Bearer ${token}`,  
           },
         });
 

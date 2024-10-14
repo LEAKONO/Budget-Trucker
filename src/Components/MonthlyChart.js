@@ -17,11 +17,11 @@ const MonthlyBudgetChart = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:5000/routes/transactions', {
+                const response = await axios.get('https://budget-trucker-b.onrender.com/routes/transactions', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 
-                console.log('Fetched transactions:', response.data); // Log the fetched data
+                console.log('Fetched transactions:', response.data); 
 
                 const transactions = response.data.incomes.concat(response.data.expenses);
                 processTransactions(transactions);
@@ -36,7 +36,7 @@ const MonthlyBudgetChart = () => {
 
             transactions.forEach(transaction => {
                 const date = new Date(transaction.date);
-                const month = date.getMonth(); // 0 = January, 11 = December
+                const month = date.getMonth(); 
 
                 if (transaction.source) {
                     monthlyIncome[month] += Number(transaction.amount); 
