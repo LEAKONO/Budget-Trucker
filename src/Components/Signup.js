@@ -32,6 +32,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     if (password !== confirmPassword) {
       setError("Passwords must match!");
       return;
@@ -62,17 +63,23 @@ const Signup = () => {
     <Container>
       <Card ref={cardRef}>
         <h1 ref={titleRef}>Create Account</h1>
-        <Message>Fill in the details to create your account and get started!</Message> 
+        <Message>
+          Ready to track your financial progress? Fill in the details to create your account and continue!
+        </Message> 
         {welcomeMessage && <WelcomeMessage>{welcomeMessage}</WelcomeMessage>} 
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>} 
+
         <Form onSubmit={handleSubmit}>
           <Logo src={logoo} alt="Logo" />
           <Input type="text" placeholder="Username" required onChange={(e) => setUsername(e.target.value)} />
           <Input type="email" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
           <Input type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
           <Input type="password" placeholder="Confirm Password" required onChange={(e) => setConfirmPassword(e.target.value)} />
-          <Button ref={buttonRef} type="submit" disabled={loading}>{loading ? 'Signing Up...' : 'Sign Up'}</Button>
+          <Button ref={buttonRef} type="submit" disabled={loading}>
+            {loading ? 'Signing Up...' : 'Sign Up'}
+          </Button>
         </Form>
+        
         <LogIn>
           <span>Already have an account? </span>
           <Link to="/login">Login</Link>
@@ -83,7 +90,6 @@ const Signup = () => {
 };
 
 export default Signup;
-
 
 // Styled Components
 const Container = styled.div`
