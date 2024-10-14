@@ -59,8 +59,14 @@ const Signup = () => {
     }
   };
 
+  const sideIllustration = 'https://images.pexels.com/photos/4475523/pexels-photo-4475523.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4475523.jpg&fm=jpg'; 
+
   return (
     <Container>
+      <IllustrationContainer>
+        <Title>Welcome! Track Your Financial Progress</Title>
+        <Illustration src={sideIllustration} alt="Financial App Illustration" />
+      </IllustrationContainer>
       <Card ref={cardRef}>
         <h1 ref={titleRef}>Create Account</h1>
         <Message>
@@ -99,6 +105,25 @@ const Container = styled.div`
   align-items: center;
   background-color: #f0f0f0; 
   padding: 0 20px; 
+`;
+
+const IllustrationContainer = styled.div`
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+`;
+
+const Title = styled.h2`
+  font-size: 24px; 
+  color: #333; 
+  margin-bottom: 20px; 
+`;
+
+const Illustration = styled.img`
+  max-width: 100%; 
+  height: auto; 
 `;
 
 const Card = styled.div`
@@ -175,4 +200,4 @@ const Message = styled.div`
   font-size: 16px; 
   color: #555;
   margin-bottom: 15px;
-`;
+`; 
