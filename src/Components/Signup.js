@@ -98,6 +98,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0; 
+  padding: 0 20px; 
 `;
 
 const Card = styled.div`
@@ -105,13 +106,16 @@ const Card = styled.div`
   padding: 30px; 
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
   border-radius: 10px; 
-  width: 400px;
+  width: 100%; 
+  max-width: 400px; 
   text-align: center;
 `;
 
 const Form = styled.form`
   width: 100%;
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Logo = styled.img`
