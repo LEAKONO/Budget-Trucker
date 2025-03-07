@@ -17,7 +17,7 @@ const MonthlyBudgetChart = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get('https://budget-trucker-b.onrender.com/routes/transactions', {
+                const response = await axios.get('https://personal-finance-iah4.onrender.com/api/transactions', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 

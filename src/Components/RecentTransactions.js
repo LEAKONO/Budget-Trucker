@@ -4,7 +4,7 @@ import { useAuth } from '../Contexts/AuthContext';
 
 const styles = {
   container: {
-    maxWidth: '600px',
+    maxWidth: '800px',
     margin: '20px auto',
     padding: '20px',
     borderRadius: '8px',
@@ -15,28 +15,35 @@ const styles = {
   mainHeading: {
     margin: '20px 0',
     fontSize: '28px',
-    color: '#333',  
+    color: '#333',
   },
   incomeHeading: {
     margin: '20px 0',
     fontSize: '24px',
-    color: '#28a745',  
+    color: '#28a745',
   },
   expenseHeading: {
     margin: '20px 0',
     fontSize: '24px',
-    color: '#dc3545',  
+    color: '#dc3545',
   },
-  list: {
-    listStyleType: 'none',
-    padding: '0',
-    margin: '0',
+  table: {
+    width: '100%',
+    borderCollapse: 'collapse',
+    margin: '20px 0',
   },
-  listItem: {
+  tableHeader: {
+    backgroundColor: '#007bff',
+    color: '#fff',
     padding: '10px',
+    textAlign: 'left',
+  },
+  tableRow: {
     borderBottom: '1px solid #ddd',
-    fontSize: '16px',
-    color: '#555',
+  },
+  tableCell: {
+    padding: '10px',
+    textAlign: 'left',
   },
   message: {
     fontSize: '18px',
@@ -51,33 +58,35 @@ const RecentTransactions = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { token } = useAuth(); 
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchRecentTransactions = async () => {
       try {
         console.log('Fetching recent transactions...');
         const config = {
-          headers: { Authorization: `Bearer ${token}` }, 
+          headers: { Authorization: `Bearer ${token}` },
         };
 
-        
-        const response = await axios.get('https://budget-trucker-b.onrender.com/routes/recent_transactions', config);
+        const response = await axios.get(
+          'https://personal-finance-iah4.onrender.com/api/transactions/recent-transactions',
+          config
+        );
         console.log('API response:', response.data);
-        
+
         setRecentTransactions(response.data);
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching recent transactions:", err);
-        setError(err.response ? err.response.data : 'An error occurred');
+        console.error('Error fetching recent transactions:', err);
+        setError(err.response ? err.response.data.message : 'An error occurred');
         setLoading(false);
       }
     };
 
     if (token) {
-      fetchRecentTransactions(); 
+      fetchRecentTransactions();
     } else {
-      console.error("No token found, unable to fetch transactions.");
+      console.error('No token found, unable to fetch transactions.');
       setError('No token provided.');
       setLoading(false);
     }
@@ -94,30 +103,48 @@ const RecentTransactions = () => {
       {recentTransactions.recent_incomes.length === 0 ? (
         <p style={styles.message}>No recent incomes found.</p>
       ) : (
-        <ul style={styles.list}>
-          {recentTransactions.recent_incomes.map((income, index) => (
-            <li key={index} style={styles.listItem}>
-              <p>Amount: {income.amount}</p>
-              <p>Date: {new Date(income.date).toLocaleDateString()}</p>
-              <p>Description: {income.description}</p>
-            </li>
-          ))}
-        </ul>
+        <table style={styles.table}>
+          <thead>
+            <tr>
+              <th style={styles.tableHeader}>Amount</th>
+              <th style={styles.tableHeader}>Date</th>
+              <th style={styles.tableHeader}>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recentTransactions.recent_incomes.map((income, index) => (
+              <tr key={index} style={styles.tableRow}>
+                <td style={styles.tableCell}>{income.amount}</td>
+                <td style={styles.tableCell}>{new Date(income.date).toLocaleDateString()}</td>
+                <td style={styles.tableCell}>{income.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
 
       <h3 style={styles.expenseHeading}>Recent Expenses</h3>
       {recentTransactions.recent_expenses.length === 0 ? (
         <p style={styles.message}>No recent expenses found.</p>
       ) : (
-        <ul style={styles.list}>
-          {recentTransactions.recent_expenses.map((expense, index) => (
-            <li key={index} style={styles.listItem}>
-              <p>Amount: {expense.amount}</p>
-              <p>Date: {new Date(expense.date).toLocaleDateString()}</p>
-              <p>Description: {expense.description}</p>
-            </li>
-          ))}
-        </ul>
+        <table style={styles.table}>
+          <thead>
+            <tr>
+              <th style={styles.tableHeader}>Amount</th>
+              <th style={styles.tableHeader}>Date</th>
+              <th style={styles.tableHeader}>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recentTransactions.recent_expenses.map((expense, index) => (
+              <tr key={index} style={styles.tableRow}>
+                <td style={styles.tableCell}>{expense.amount}</td>
+                <td style={styles.tableCell}>{new Date(expense.date).toLocaleDateString()}</td>
+                <td style={styles.tableCell}>{expense.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

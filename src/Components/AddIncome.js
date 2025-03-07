@@ -14,7 +14,7 @@ const AddIncome = ({ onAdd }) => {
     e.preventDefault();
     setError(null); 
     try {
-      await axios.post('https://budget-trucker-b.onrender.com/routes/income', 
+      await axios.post('https://personal-finance-iah4.onrender.com/api/income', 
         { amount, source, date, description },
         {
           headers: { 

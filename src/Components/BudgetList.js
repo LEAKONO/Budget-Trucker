@@ -45,7 +45,7 @@ const BudgetList = () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get('https://budget-trucker-b.onrender.com/routes/budget', config);
+        const response = await axios.get('https://personal-finance-iah4.onrender.com/api/budget', config);
 
         setBudgets(response.data);
       } catch (err) {

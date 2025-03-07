@@ -12,7 +12,7 @@ const AddExpense = ({ onAdd }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://budget-trucker-b.onrender.com/routes/expense', 
+      await axios.post('https://personal-finance-iah4.onrender.com/api/expense', 
         { amount, category, date, description }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );

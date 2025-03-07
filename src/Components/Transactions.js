@@ -11,7 +11,7 @@ const Transactions = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch('https://budget-trucker-b.onrender.com/routes/transactions', {
+        const response = await fetch('https://personal-finance-iah4.onrender.com/api/transactions', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../Contexts/AuthContext';
-import { format } from 'date-fns'; 
+import { format } from 'date-fns';
 
 const styles = {
   container: {
@@ -46,7 +46,7 @@ const FinancialGoalsList = () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get('https://budget-trucker-b.onrender.com/routes/financial_goals', config);
+        const response = await axios.get('https://personal-finance-iah4.onrender.com/api/financial-goals', config);
         setFinancialGoals(response.data);
         setLoading(false);
       } catch (err) {
@@ -79,11 +79,11 @@ const FinancialGoalsList = () => {
       ) : (
         <ul style={styles.list}>
           {financialGoals.map((goal) => (
-            <li key={goal.id} style={styles.listItem}>
-              <p>Goal: {goal.goal_name}</p>
-              <p>Target Amount: {goal.target_amount}</p>
-              <p>Current Amount: {goal.current_amount}</p>
-              <p>Target Date: {formatDate(goal.target_date)}</p>
+            <li key={goal._id} style={styles.listItem}>
+              <p>Goal: {goal.goalName}</p>
+              <p>Target Amount: {goal.targetAmount}</p>
+              <p>Current Amount: {goal.currentAmount}</p>
+              <p>Target Date: {formatDate(goal.targetDate)}</p>
             </li>
           ))}
         </ul>

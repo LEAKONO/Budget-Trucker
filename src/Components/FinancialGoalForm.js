@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { useAuth } from '../Contexts/AuthContext'; 
+import { useAuth } from '../Contexts/AuthContext';
 
 const styles = {
   form: {
@@ -53,7 +53,7 @@ const FinancialGoalForm = () => {
     initialValues: {
       goal_name: '',
       target_amount: '',
-      current_amount: '', 
+      current_amount: '',
       target_date: '',
     },
     validationSchema: Yup.object({
@@ -70,12 +70,12 @@ const FinancialGoalForm = () => {
           },
         };
         const response = await axios.post(
-          'https://budget-trucker-b.onrender.com/routes/financial_goals',
+          'https://personal-finance-iah4.onrender.com/api/financial-goals',
           values,
           config
         );
         setMessage('Financial goal added successfully!');
-        formik.resetForm(); 
+        formik.resetForm();
       } catch (error) {
         setMessage('Failed to add financial goal');
         console.error('Error adding financial goal:', error);

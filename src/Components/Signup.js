@@ -42,7 +42,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('https://budget-trucker-b.onrender.com/auth/signup', signupData);
+      const response = await axios.post('https://personal-finance-iah4.onrender.com/api/auth/signup', signupData);
       if (response.status === 200 || response.status === 201) {
         const { token } = response.data; 
         localStorage.setItem('token', token);
@@ -54,6 +54,7 @@ const Signup = () => {
       }
     } catch (error) {
       setError(error.response?.data?.message || 'Signup error, please try again.');
+      console.error('Signup error:', error);
     } finally {
       setLoading(false);
     }
@@ -96,6 +97,8 @@ const Signup = () => {
 };
 
 export default Signup;
+
+// Styled Components (same as before)
 
 // Styled Components
 const Container = styled.div`

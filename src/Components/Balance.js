@@ -10,7 +10,7 @@ const Balance = () => {
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const response = await fetch('https://budget-trucker-b.onrender.com/routes/balance', {
+        const response = await fetch('https://personal-finance-iah4.onrender.com/api/balance', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
