@@ -48,7 +48,7 @@ This repository contains the frontend of the Financial Management Application. B
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/LEAKONO/Budget-Trucker
-   cd your-frontend-repo-name
+   cd Budget-Trucker
 
 
 ### Install dependencies:
