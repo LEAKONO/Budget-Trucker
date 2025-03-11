@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
 
 const Balance = () => {
-  const { token } = useAuth(); 
+  const { token } = useAuth();
   const [balance, setBalance] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,7 +52,6 @@ const Balance = () => {
   );
 };
 
-// Styles
 const styles = {
   container: {
     maxWidth: '400px',

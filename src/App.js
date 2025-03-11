@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar';
 import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard'; 
+import LandingPage from './Components/LandingPage'; // Import the LandingPage component
 import { AuthProvider, useAuth } from './Contexts/AuthContext';
 import './App.css';
 
@@ -14,7 +15,7 @@ const PrivateRoute = ({ children }) => {
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavbar = location.pathname === '/login' || location.pathname === '/signup';
+  const hideNavbar = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/';
 
   const [transactions, setTransactions] = useState([
     // Sample transaction data
@@ -27,6 +28,7 @@ const AppContent = () => {
     <>
       {!hideNavbar && <NavBar />}
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/*" element={
@@ -34,7 +36,6 @@ const AppContent = () => {
             <Dashboard transactions={transactions} />
           </PrivateRoute>
         } />
-        <Route path="/" element={<Navigate to="/signup" />} />
       </Routes>
     </>
   );

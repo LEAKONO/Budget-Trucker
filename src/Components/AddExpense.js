@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuth } from '../Contexts/AuthContext'; 
+import { useAuth } from '../Contexts/AuthContext';
 
 const AddExpense = ({ onAdd }) => {
   const [amount, setAmount] = useState('');
@@ -12,12 +12,13 @@ const AddExpense = ({ onAdd }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://personal-finance-iah4.onrender.com/api/expense', 
-        { amount, category, date, description }, 
+      await axios.post(
+        'https://personal-finance-iah4.onrender.com/api/expense',
+        { amount, category, date, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert('Expense added successfully');
-      if (onAdd) onAdd(); // Notify parent component to refresh data
+      if (onAdd) onAdd();
     } catch (error) {
       console.error('Error adding expense:', error.response?.data || error.message);
     }

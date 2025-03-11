@@ -1,3 +1,4 @@
+/* Default styles for larger screens */
 .sidebar {
     width: 250px; 
     height: calc(100vh - 60px); 
@@ -9,6 +10,7 @@
     padding: 20px; 
     border-right: 1px solid #ddd; 
     overflow-y: auto; 
+    transition: width 0.3s ease;
 }
 
 .sidebar ul {
@@ -39,6 +41,61 @@
     color: #3113b9ea; 
 }
 
+.sidebar-label {
+    display: inline-block;
+}
+
 .sidebar-content {
     margin-top: 20px; 
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px; /* Collapse sidebar to show only icons */
+    }
+
+    .sidebar-label {
+        display: none; /* Hide labels on smaller screens */
+    }
+
+    .sidebar-icon {
+        margin-right: 0; /* Remove margin for icons when collapsed */
+    }
+
+    .sidebar-item a {
+        justify-content: center; /* Center icons when collapsed */
+    }
+}
+
+/* Optional: Add a toggle button for mobile devices */
+.sidebar-toggle {
+    display: none; /* Hide by default */
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block; /* Show toggle button on smaller screens */
+    }
+
+    .sidebar.collapsed {
+        width: 60px; /* Collapsed state */
+    }
+
+    .sidebar.expanded {
+        width: 250px; /* Expanded state */
+    }
+
+    .sidebar.expanded .sidebar-label {
+        display: inline-block; /* Show labels when expanded */
+    }
 }

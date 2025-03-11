@@ -12,27 +12,22 @@ const AddIncome = ({ onAdd }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); 
+    setError(null);
     try {
-      await axios.post('https://personal-finance-iah4.onrender.com/api/income', 
+      await axios.post(
+        'https://personal-finance-iah4.onrender.com/api/income',
         { amount, source, date, description },
-        {
-          headers: { 
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json' 
-          }
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       alert('Income added successfully');
-      
       setAmount('');
       setSource('');
       setDate('');
       setDescription('');
-      if (onAdd) onAdd(); 
+      if (onAdd) onAdd();
     } catch (error) {
       console.error('Error adding income:', error.response?.data || error.message);
-      setError(error.response?.data?.message || 'An error occurred.'); // Set error message
+      setError(error.response?.data?.message || 'An error occurred.');
     }
   };
 
@@ -68,7 +63,7 @@ const AddIncome = ({ onAdd }) => {
         onChange={(e) => setDescription(e.target.value)}
         style={styles.textarea}
       ></textarea>
-      {error && <p style={styles.error}>{error}</p>} 
+      {error && <p style={styles.error}>{error}</p>}
       <button type="submit" style={styles.button}>Add Income</button>
     </form>
   );

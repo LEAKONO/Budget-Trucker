@@ -14,6 +14,7 @@ import BudgetForm from './BudgetForm';
 import BudgetList from './BudgetList';
 import Home from './Home'; // Import the Home component
 import { useAuth } from '../Contexts/AuthContext';
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const { token } = useAuth();
